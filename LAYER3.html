@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layer 3 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#ff9a9e,#ff6f91,#ff8fab,#ffc2d1);
+    background-size:400% 400%;
+    animation:bgMove 10s ease infinite;
+    overflow:hidden;
+    font-family:'Press Start 2P', cursive;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* ENVELOPE BASE */
+.envelope{
+    position:relative;
+    width:300px;
+    height:200px;
+    background:#ff8fab;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow:0 25px 60px rgba(0,0,0,0.4);
+    transition:0.4s;
+}
+
+.envelope:hover{
+    transform:scale(1.05);
+}
+
+/* Bottom fold lines */
+.envelope::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg, transparent 50%, #ff6f91 50%),
+               linear-gradient(-135deg, transparent 50%, #ff6f91 50%);
+    background-size:50% 100%;
+    background-repeat:no-repeat;
+    background-position:left,right;
+    opacity:0.6;
+}
+
+/* Top flap */
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ff4d88;
+    clip-path:polygon(0 0,50% 60%,100% 0);
+    transform-origin:top;
+    transition:0.6s ease;
+}
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+}
+
+/* Text under envelope */
+.open-text{
+    margin-top:25px;
+    font-size:10px;
+    color:white;
+    text-shadow:0 0 10px #fff;
+    animation:pulseText 1.5s infinite;
+}
+
+@keyframes pulseText{
+    0%,100%{opacity:0.6;}
+    50%{opacity:1;}
+}
+
+/* Overlay blur */
+.overlay{
+    position:fixed;
+    inset:0;
+    backdrop-filter:blur(6px);
+    background:rgba(0,0,0,0.3);
+    opacity:0;
+    transition:0.5s;
+    pointer-events:none;
+}
+
+.overlay.active{
+    opacity:1;
+}
+
+/* LETTER floating */
+.letter{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.3);
+    width:340px;
+    background:white;
+    color:#ff4d88;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    font-size:9px;
+    line-height:1.8;
+    opacity:0;
+    transition:0.8s cubic-bezier(.68,-0.55,.27,1.55);
+    z-index:10;
+}
+
+.letter.show{
+    transform:translate(-50%,-50%) scale(1);
+    opacity:1;
+}
+
+/* Button */
+button{
+    margin-top:20px;
+    padding:10px 15px;
+    font-size:8px;
+    background:#ff4d88;
+    border:2px solid #ff4d88;
+    color:white;
+    cursor:pointer;
+    display:none;
+    animation:pulseBtn 1.5s infinite;
+}
+
+@keyframes pulseBtn{
+    0%{box-shadow:0 0 5px #ff4d88;}
+    50%{box-shadow:0 0 20px #ff4d88;}
+    100%{box-shadow:0 0 5px #ff4d88;}
+}
+
+.fade-out{
+    animation:fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut{
+    to{opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="envelope" id="envelope">
+    <div class="flap"></div>
+</div>
+
+<div class="open-text">Buka surat ini sayang 💕</div>
+
+<div class="letter" id="letter">
+    Aku mungkin bukan yang paling sempurna,<br><br>
+    tapi aku selalu mau jadi yang terbaik buat kamu.<br><br>
+    Kamu itu rumah buat hati aku.<br><br>
+    Dan aku bersyukur banget punya kamu.
+    <br><br>
+    <button id="nextBtn" onclick="goLayer4()">Pencet sekali lagi 💖</button>
+</div>
+
+<script>
+const envelope=document.getElementById("envelope");
+const letter=document.getElementById("letter");
+const overlay=document.getElementById("overlay");
+const nextBtn=document.getElementById("nextBtn");
+
+envelope.addEventListener("click",()=>{
+    envelope.classList.add("open");
+    overlay.classList.add("active");
+
+    setTimeout(()=>{
+        letter.classList.add("show");
+    },500);
+
+    setTimeout(()=>{
+        nextBtn.style.display="inline-block";
+    },1000);
+});
+
+function goLayer4(){
+    document.body.classList.add("fade-out");
+    setTimeout(()=>{
+        window.location.href="LAYER4.html";
+    },1500);
+}
+</script>
+
+</body>
+</html>

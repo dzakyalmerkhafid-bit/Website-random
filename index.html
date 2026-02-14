@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9a9e, #ff4d88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+}
+
+/* Floating Love */
+.love {
+    position: absolute;
+    bottom: -20px;
+    animation: floatUp linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+.container {
+    text-align: center;
+    max-width: 90%;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px #ff99cc, 0 0 20px #ff4d88;
+}
+
+p {
+    font-size: 10px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 5px #ffb3d9;
+}
+
+/* Button */
+button {
+    display: none;
+    padding: 15px 25px;
+    font-size: 10px;
+    background: #ff4d88;
+    color: white;
+    border: 3px solid white;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff99cc, 0 0 20px #ff4d88;
+    animation: fadeIn 1s forwards;
+}
+
+button:hover {
+    background: white;
+    color: #ff4d88;
+}
+
+/* Fade Out */
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="layer1">
+    <h1 id="text1"></h1>
+    <p id="text2"></p>
+    <button id="nextBtn" onclick="nextLayer()">Pencet dong babee 💕</button>
+</div>
+
+<script>
+const text1 = "Hai sayangggkuu Amelia Putri ❤️";
+const text2 = "Aku punya sesuatu spesial buat kamu hari ini...";
+let i = 0;
+let j = 0;
+
+function typeFirstText() {
+    if (i < text1.length) {
+        document.getElementById("text1").innerHTML += text1.charAt(i);
+        i++;
+        setTimeout(typeFirstText, 80);
+    } else {
+        setTimeout(typeSecondText, 500);
+    }
+}
+
+function typeSecondText() {
+    if (j < text2.length) {
+        document.getElementById("text2").innerHTML += text2.charAt(j);
+        j++;
+        setTimeout(typeSecondText, 50);
+    } else {
+        document.getElementById("nextBtn").style.display = "inline-block";
+    }
+}
+
+function nextLayer() {
+    document.getElementById("layer1").classList.add("fade-out");
+    setTimeout(() => {
+        window.location.href = "LAYER2.html";
+    }, 1000);
+}
+
+
+/* Generate floating hearts */
+function createLove() {
+    const love = document.createElement("div");
+    love.classList.add("love");
+    love.innerHTML = "❤️";
+    love.style.left = Math.random() * 100 + "vw";
+    love.style.animationDuration = (3 + Math.random() * 5) + "s";
+    love.style.fontSize = (15 + Math.random() * 20) + "px";
+    document.body.appendChild(love);
+
+    setTimeout(() => love.remove(), 8000);
+}
+
+setInterval(createLove, 500);
+
+typeFirstText();
+</script>
+
+</body>
+</html>

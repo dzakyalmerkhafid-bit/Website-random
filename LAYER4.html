@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:200vh;
+    overflow-x:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:100px;
+    font-family:'Press Start 2P', cursive;
+    background:linear-gradient(135deg,#ffd6e0,#ffc2d1,#ffe5ec);
+    position:relative;
+    cursor:url("https://cdn-icons-png.flaticon.com/32/833/833472.png"), auto;
+}
+
+
+/* TITLE */
+h1{
+    font-size:16px;
+    color:#ff4d88;
+    text-shadow:0 0 15px #fff, 0 0 30px #ff99cc;
+    margin-bottom:40px;
+    position:relative;
+}
+
+/* Sparkle around text */
+.text-sparkle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:0.2; transform:scale(0.5);}
+    50%{opacity:1; transform:scale(1);}
+}
+
+/* PHOTO BOARD */
+.photo-board{
+    display:flex;
+    gap:40px;
+    margin-bottom:40px;
+}
+
+/* POLAROID */
+.polaroid{
+    position:relative;
+    background:white;
+    padding:15px 15px 45px 15px;
+    border-radius:10px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
+    transition:0.5s ease;
+}
+
+.polaroid:hover{
+    transform:scale(1.05);
+}
+
+.polaroid:nth-child(1){ transform:rotate(-6deg); }
+.polaroid:nth-child(2){ transform:rotate(3deg); }
+.polaroid:nth-child(3){ transform:rotate(-3deg); }
+
+.polaroid img{
+    width:180px;
+    height:220px;
+    object-fit:cover;
+    border-radius:5px;
+}
+
+/* PIN */
+.pin{
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%);
+    width:15px;
+    height:15px;
+    background:#ff4d4d;
+    border-radius:50%;
+    box-shadow:0 3px 6px rgba(0,0,0,0.3);
+    border:2px solid white;
+}
+
+/* Bottom text */
+.love-text{
+    font-size:12px;
+    color:#ff4d88;
+    text-shadow:0 0 10px #ffb3d9;
+    position:relative;
+}
+
+/* Floating hearts slow */
+.heart{
+    position:absolute;
+    top:-10px;
+    animation:fall 10s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
+/* MUSIC BUTTON */
+.music-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:white;
+    color:#ff4d88;
+    border:none;
+    padding:10px 15px;
+    font-family:'Press Start 2P', cursive;
+    font-size:8px;
+    cursor:pointer;
+    border-radius:8px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+.music-player{
+    margin-top:30px;
+}
+
+.cassette{
+    width:220px;
+    height:80px;
+    background:#ffb6c1;
+    border-radius:15px;
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.3s ease;
+}
+
+.cassette:hover{
+    transform:scale(1.05);
+}
+
+.tape-hole{
+    width:20px;
+    height:20px;
+    background:#333;
+    border-radius:50%;
+    position:absolute;
+    top:25px;
+}
+
+.tape-hole.left{ left:40px; }
+.tape-hole.right{ right:40px; }
+
+.label{
+    font-size:8px;
+    color:white;
+}
+.scroll-section{
+    margin-top:150px;
+    width:80%;
+    max-width:700px;
+    text-align:center;
+}
+
+.scroll-title{
+    font-size:10px;
+    color:#ff4d88;
+    margin-bottom:30px;
+    text-shadow:0 0 10px #ffcce0;
+}
+
+.typing-text{
+    font-size:8px;
+    color:#ff4d88;
+    line-height:2;
+    text-shadow:0 0 6px #ffd6ec;
+    min-height:120px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bgMusic" autoplay loop>
+    <!-- GANTI LINK MUSIK DI SINI -->
+    <source src="sempurna.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">Mute</button>
+
+<h1 id="title">Selamat Hari Valentine Perempuan Ku ❤️</h1>
+
+<div class="photo-board">
+    <div class="polaroid">
+        <div class="pin"></div>
+        <img src="../IMAGE/FOTO1.jpeg">
+    </div>
+    <div class="polaroid">
+        <div class="pin"></div>
+        <img src="../IMAGE/FOTO2.webp">
+    </div>
+    <div class="polaroid">
+        <div class="pin"></div>
+        <img src="../IMAGE/FOTO3.jpeg">
+    </div>
+</div>
+
+<div class="love-text" id="bottomText">
+    I Love You More Than Yesterday 💞
+</div>
+<!-- MUSIC PLAYER -->
+ <div class="scroll-section">
+    <h2 class="scroll-title">Untuk Kamu 💕</h2>
+    <p id="typingMessage" class="typing-text"></p>
+</div>
+
+<div class="music-player">
+    
+    <div class="cassette" onclick="toggleMusic()">
+        <div class="tape-hole left"></div>
+        <div class="tape-hole right"></div>
+        <div class="label">PLAY MUSIC 🎵</div>
+    </div>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8c6c8e6f8b.mp3?filename=romantic-background-110624.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+
+const music = document.getElementById("bgMusic");
+const cassette = document.querySelector(".cassette");
+const label = document.querySelector(".label");
+
+function toggleMusic(){
+    if(music.paused){
+        music.play();
+        label.innerText="PAUSE MUSIC ⏸";
+    }else{
+        music.pause();
+        label.innerText="PLAY MUSIC 🎵";
+    }
+}
+
+
+
+/* Floating hearts slow */
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*20)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),10000);
+}
+setInterval(createHeart,800);
+
+/* Sparkle around texts */
+function createTextSparkle(element){
+    const sparkle=document.createElement("div");
+    sparkle.className="text-sparkle";
+    sparkle.style.left=Math.random()*element.offsetWidth+"px";
+    sparkle.style.top=Math.random()*element.offsetHeight+"px";
+    element.appendChild(sparkle);
+    setTimeout(()=>sparkle.remove(),3000);
+}
+
+setInterval(()=>{
+    createTextSparkle(document.getElementById("title"));
+    createTextSparkle(document.getElementById("bottomText"));
+},1500);
+
+const text = `Sayang ❤️
+
+Kalau ada satu hal yang paling aku syukuri akhir-akhir ini, itu adalah kamu.
+Kehadiran kamu bikin hari-hari yang biasa jadi terasa istimewa.
+
+Aku gak tahu gimana caranya, tapi kamu selalu berhasil bikin aku senyum bahkan cuma lewat hal kecil.
+Kamu itu bukan cuma seseorang yang aku sayang…
+kamu itu tempat aku merasa tenang.
+
+Sayang,
+di antara banyaknya orang di dunia ini,
+aku senang banget semesta mempertemukan aku sama kamu.
+
+Kamu cantik, tapi yang lebih dari itu… kamu tulus.
+Kamu lembut, tapi juga kuat.
+Dan setiap sisi kamu bikin aku makin yakin kalau aku gak salah pilih hati.
+
+Kalau suatu hari aku terlihat terlalu diam,
+itu bukan karena aku bosan.
+Itu karena aku lagi mikir betapa beruntungnya aku punya kamu.
+
+Selamat Hari Valentine, sayang.
+Terima kasih sudah jadi bagian paling manis dalam hidup aku.
+
+Aku mungkin gak sempurna,
+tapi perasaan aku ke kamu selalu sungguh-sungguh.
+
+I love you,
+lebih dari yang bisa aku jelasin pakai kata-kata. ❤️`;
+
+let i = 0;
+const speed = 40;
+const typingElement = document.getElementById("typingMessage");
+
+function typeWriter(){
+    if(i < text.length){
+        typingElement.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    }
+}
+
+window.addEventListener("load", typeWriter);
+
+
+</script>
+
+</body>
+</html>
